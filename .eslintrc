@@ -4,7 +4,7 @@
     "standard",
     "standard-react"
   ],
-  "plugins": [
+  "plugins" : [
     "babel"
   ],
   "env"     : {
@@ -18,9 +18,19 @@
     "__BASENAME__" : false
   },
   "rules": {
-    "semi" : [2, "never"],
+    "semi" : [1, "always"],
+    "no-irregular-whitespace": 0,
     "max-len": [2, 120, 2],
+    "indent": 0,
+    "react/prop-types": 0,
+    "react/jsx-indent": 0,
+    "quotes": [1, "single"],
+    "jsx-quotes": [1, "prefer-double"],
+    "react/jsx-indent-props": 0,
+    "react/jsx-space-before-closing": 0,
+    "no-trailing-spaces": 1,
     "generator-star-spacing": 0,
-    "babel/generator-star-spacing": 1
+    "babel/generator-star-spacing": 1,
+    "react/jsx-no-bind": 0
   }
 }
