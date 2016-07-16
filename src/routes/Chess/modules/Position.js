@@ -41,7 +41,7 @@ export default class Position {
      * @returns {boolean}
      */
     equals(pos) {
-        return this.row = pos.row && pos.column == this.column;
+        return this.row === pos.row && pos.column === this.column;
     }
 
     /**
@@ -51,5 +51,9 @@ export default class Position {
     update(pos) {
         this.row = pos.row;
         this.column = pos.column;
+    }
+
+    toString() {
+        return `${this.row}${this.column}`;
     }
 }

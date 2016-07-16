@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>black6</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="influenceBlack" transform="translate(-2000.000000, 0.000000)"></g>
+        <g id="blocks" transform="translate(-2000.000000, 0.000000)" fill="#3F3B9A">
+            <rect id="Rectangle-17-Copy-5" x="2000" y="0" width="200" height="60"></rect>
+        </g>
+        <g id="lines" transform="translate(-1600.000000, 9.000000)" stroke-linecap="square">
+            <path d="M1601.5,1.5 L1799.5,1.5" id="Line" stroke="#818181"></path>
+            <path d="M1601.5,11.5 L1799.5,11.5" id="Line-Copy" stroke="#FFFFFF"></path>
+            <path d="M1601.5,21.5 L1799.5,21.5" id="Line" stroke="#818181"></path>
+            <path d="M1601.5,31.5 L1799.5,31.5" id="Line-Copy" stroke="#FFFFFF"></path>
+            <path d="M1600.5,41.5 L1798.5,41.5" id="Line-Copy-2" stroke="#818181"></path>
+        </g>
+    </g>
+</svg>

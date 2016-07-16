@@ -17,9 +17,7 @@ const mapActionCreators = {
     doubleAsync
 };
 
-const mapStateToProps = (state) => ({
-    chess: state.chess
-});
+const mapStateToProps = (state) => state.chess;
 
 /*  Note: mapStateToProps is where you should use `reselect` to create selectors, ie:
 

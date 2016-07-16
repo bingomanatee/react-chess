@@ -1,0 +1,47 @@
+
+$lineSolid: 0.125;
+$contrast: 0.06;
+$dark: floor(255 * (1 - $contrast));
+
+.board, .chessContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-grow: 1
+}
+
+.row {
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.tile {
+  flex-grow: 1;
+  flex-shrink: 1;
+  border: 1px solid rgba(0,0,0, $lineSolid);
+  justify-content: space-between;
+  position: relative;
+}
+
+.tile__odd {
+  background-color: rgb($dark, $dark, $dark);
+}
+
+.chessContainer {
+  width: 90vmin;
+  height: 90vmin;
+  flex-grow: 1
+}
+
+.piece {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}

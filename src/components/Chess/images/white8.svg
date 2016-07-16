@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>white8</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="influenceWhite" transform="translate(-2800.000000, 0.000000)"></g>
+        <g id="blocks-copy" transform="translate(-1301.000000, 160.000000) scale(1, -1) translate(1301.000000, -160.000000) translate(-2801.000000, 120.000000)" fill="#FFA200">
+            <rect id="Rectangle-17-Copy-7" x="2800" y="0" width="200" height="80"></rect>
+        </g>
+        <g id="lines" transform="translate(-2400.000000, -391.000000)" stroke-linecap="square">
+            <path d="M2400.5,580.5 L2598.5,580.5" id="Line-Copy-25" stroke="#818181" transform="translate(2499.500000, 580.500000) scale(1, -1) translate(-2499.500000, -580.500000) "></path>
+            <path d="M2400.5,570.5 L2598.5,570.5" id="Line-Copy-26" stroke="#000000" transform="translate(2499.500000, 570.500000) scale(1, -1) translate(-2499.500000, -570.500000) "></path>
+            <path d="M2400.5,560.5 L2598.5,560.5" id="Line-Copy-27" stroke="#818181" transform="translate(2499.500000, 560.500000) scale(1, -1) translate(-2499.500000, -560.500000) "></path>
+            <path d="M2400.5,550.5 L2598.5,550.5" id="Line-Copy-28" stroke="#000000" transform="translate(2499.500000, 550.500000) scale(1, -1) translate(-2499.500000, -550.500000) "></path>
+            <path d="M2399.5,540.5 L2597.5,540.5" id="Line-Copy-29" stroke="#818181" transform="translate(2498.500000, 540.500000) scale(1, -1) translate(-2498.500000, -540.500000) "></path>
+            <path d="M2399.5,530.5 L2597.5,530.5" id="Line-Copy-30" stroke="#000000" transform="translate(2498.500000, 530.500000) scale(1, -1) translate(-2498.500000, -530.500000) "></path>
+            <path d="M2399.5,520.5 L2597.5,520.5" id="Line-Copy-31" stroke="#818181" transform="translate(2498.500000, 520.500000) scale(1, -1) translate(-2498.500000, -520.500000) "></path>
+        </g>
+    </g>
+</svg>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>whiteB</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M130,170 L130,114.000752 C130,106.275001 123.735742,100 116.008389,100 L83.9916109,100 C76.2653333,100 70,106.26835 70,114.000752 L70,170 L50,190 L150,190 L130,170 L130,170 Z M100.248047,30 L130.496094,89.8450123 L70,89.8450127 L100.248047,30 L100.248047,30 Z" id="path-1"></path>
+        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="164">
+            <rect x="48" y="28" width="104" height="164" fill="white"></rect>
+            <use xlink:href="#path-1" fill="black"></use>
+        </mask>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="whitePieces" transform="translate(-400.000000, 0.000000)"></g>
+        <g id="Combined-Shape-Copy-5">
+            <use fill="#FFA200" fill-rule="evenodd" xlink:href="#path-1"></use>
+            <use stroke="#00004A" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        </g>
+    </g>
+</svg>

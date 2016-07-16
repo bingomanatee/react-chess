@@ -1,7 +1,7 @@
 const typeRE = /^[KQRBNP]$/;
 import Position from './Position';
 
-export default class PiecePosition extends Position {
+export default class Piece extends Position {
     constructor (pieceType, isWhite, row, column) {
         super(row, column);
         this.type = pieceType;
@@ -9,7 +9,7 @@ export default class PiecePosition extends Position {
     }
 
     clone () {
-        return new PiecePosition(this.type, this.color, this.row, this.column);
+        return new Piece(this.type, this.color, this.row, this.column);
     }
 
     /**
@@ -38,11 +38,19 @@ export default class PiecePosition extends Position {
         this._color = !!val;
     }
 
+    get colorName () {
+        return this.color ? 'white' : 'black';
+    }
+
     /**
      *
      * @returns {boolean}
      */
     get color () {
         return this._color;
+    }
+
+    get name () {
+        return `${this.colorName}${this.type}`;
     }
 }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="200px" height="200px" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 3.8.3 (29802) - http://www.bohemiancoding.com/sketch -->
+    <title>white6</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="influenceWhite" transform="translate(-2000.000000, 0.000000)"></g>
+        <g id="blocks-copy" transform="translate(-501.000000, 160.000000) scale(1, -1) translate(501.000000, -160.000000) translate(-2001.000000, 120.000000)" fill="#FFA200">
+            <rect id="Rectangle-17-Copy-5" x="2000" y="0" width="200" height="60"></rect>
+        </g>
+        <g id="lines" transform="translate(-1600.000000, -391.000000)" stroke-linecap="square">
+            <path d="M1600.5,580.5 L1798.5,580.5" id="Line-Copy-14" stroke="#818181" transform="translate(1699.500000, 580.500000) scale(1, -1) translate(-1699.500000, -580.500000) "></path>
+            <path d="M1600.5,570.5 L1798.5,570.5" id="Line-Copy-15" stroke="#000000" transform="translate(1699.500000, 570.500000) scale(1, -1) translate(-1699.500000, -570.500000) "></path>
+            <path d="M1600.5,560.5 L1798.5,560.5" id="Line-Copy-16" stroke="#818181" transform="translate(1699.500000, 560.500000) scale(1, -1) translate(-1699.500000, -560.500000) "></path>
+            <path d="M1600.5,550.5 L1798.5,550.5" id="Line-Copy-17" stroke="#000000" transform="translate(1699.500000, 550.500000) scale(1, -1) translate(-1699.500000, -550.500000) "></path>
+            <path d="M1599.5,540.5 L1797.5,540.5" id="Line-Copy-18" stroke="#818181" transform="translate(1698.500000, 540.500000) scale(1, -1) translate(-1698.500000, -540.500000) "></path>
+        </g>
+    </g>
+</svg>
