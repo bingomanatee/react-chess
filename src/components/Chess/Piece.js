@@ -47,18 +47,17 @@ class Piece extends Component {
     render () {
         const props = this.props;
 
-        var myPiece = this.myPiece();
-
-        if (!myPiece) {
-            return null;
-        }
-
-        const image = pieces[myPiece.name];
         const style = {
-            backgroundImage: `url(${image})`,
             backgroundSize: 'contain',
             backgroundPosition: 'center center'
         };
+
+        var myPiece = this.myPiece();
+
+        if (myPiece) {
+            const image = pieces[myPiece.name];
+            style.backgroundImage = `url(${image})`
+        }
 
         return (<div key={`piece${props.position.toString()}`} className={classes.piece}
                      style={style}>

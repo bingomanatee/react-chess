@@ -31,25 +31,25 @@ export const Hover = (props) => {
                 hoverStyle.backgroundImage = `url(${hoverToImage})`;
             }
         }
-    } else if (!props.hoveringOver) {
-        return null;
-    } else if (props.hoveringOver.samePosition(props.position)) {
-        hoverStyle.backgroundImage = `url(${hoverFromImage})`;
-    } else {
-        let canMoveTo = false;
-        if (influence.canMoveInto.length) {
-            for (let canMove of influence.canMoveInto) {
-                if (canMove.samePosition(props.hoveringOver)) {
-                    if (!myPiece || myPiece.color !== canMove.piece.color) {
-                        canMoveTo = true;
-                        break;
+    } else if (props.hoveringOver) {
+        if (props.hoveringOver.samePosition(props.position)) {
+            hoverStyle.backgroundImage = `url(${hoverFromImage})`;
+        } else {
+            let canMoveTo = false;
+            if (influence.canMoveInto.length) {
+                for (let canMove of influence.canMoveInto) {
+                    if (canMove.samePosition(props.hoveringOver)) {
+                        if (!myPiece || myPiece.color !== canMove.piece.color) {
+                            canMoveTo = true;
+                            break;
+                        }
                     }
                 }
             }
-        }
 
-        if (canMoveTo) {
-            hoverStyle.backgroundImage = `url(${hoverToImage})`;
+            if (canMoveTo) {
+                hoverStyle.backgroundImage = `url(${hoverToImage})`;
+            }
         }
     }
 

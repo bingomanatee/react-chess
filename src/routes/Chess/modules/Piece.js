@@ -30,15 +30,15 @@ export default class Piece extends Position {
      * @param val {boolean}
      */
     set moved (val) {
-        this._moved = !!val;
+        this._moved = val;
     }
 
     /**
      *
-     * @returns {boolean|*}
+     * @returns {boolean}
      */
     get moved () {
-        return this._moved;
+        return !!this._moved;
     }
 
     /**
@@ -68,7 +68,11 @@ export default class Piece extends Position {
     }
 
     get colorName () {
-        return this.color ? 'white' : 'black';
+       return this.color ? 'white' : 'black';
+    }
+
+    get colorLetter () {
+        return this.colorName.substr(0, 1);
     }
 
     /**
@@ -80,6 +84,6 @@ export default class Piece extends Position {
     }
 
     get name () {
-        return `${this.colorName}${this.type}`;
+        return `${this.colorLetter}${this.type}`;
     }
 }

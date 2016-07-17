@@ -13,7 +13,7 @@ import chessProps from './chessProps';
  import black7 from './images/black7.svg';
  import black8 from './images/black8.svg';
 
- const blackInfluence = [black1, black2, black3, black4, black5, black6, black7, black8];
+ const blackPower = [black1, black2, black3, black4, black5, black6, black7, black8];
 
  import white1 from './images/white1.svg';
  import white2 from './images/white2.svg';
@@ -24,7 +24,7 @@ import chessProps from './chessProps';
  import white7 from './images/white7.svg';
  import white8 from './images/white8.svg';
 
- const whiteInfluence = [white1, white2, white3, white4, white5, white6, white7, white8];
+ const whitePrivilege = [white1, white2, white3, white4, white5, white6, white7, white8];
  */
 
 import whiteInfluence from './images/white_influence.svg';
@@ -57,43 +57,8 @@ export const Influence = (props) => {
         style.backgroundColor = color;
     }
 
-    let blackPips = [];
-    for (let b = 0; b < tileInfluence.blackInfluence; ++b) {
-        let s = blackPipStyle;
-        if (b < tileInfluence.whiteInfluence) {
-            s = blackPipStyleBalanced;
-        }
-        blackPips.push(<div key={`pip-${b}-b`} className={classes.influence__pip} style={s}>&nbsp;</div>);
-    }
-    if (!blackPips.length) {
-        blackPips = '';
-    }
-
-    let whitePips = [];
-    for (let b = 0; b < tileInfluence.whiteInfluence; ++b) {
-        let s = whitePipStyle;
-        if (b < tileInfluence.blackInfluence) {
-        s = whitePipStyleBalanced;
-        }
-        whitePips.push(<div key={`pip-${b}-w`} className={classes.influence__pip} style={s}>&nbsp;</div>);
-    }
-    if (!whitePips.length) {
-        whitePips = '';
-    }
-
 
     return (<div key={`influence${props.position.toString()}`} className={classes.influence} style={style}>
-        <div key={`influence${props.position.toString()}-black`}
-             className={`${classes.influence__inner} ${classes.influence__inner_black}`}>
-            {blackPips}
-        </div>
-        <div key={`influence${props.position.toString()}-mid`} className={classes.influence__inner_mid}>
-            &nbsp;
-        </div>
-        <div key={`influence${props.position.toString()}-white`}
-             className={`${classes.influence__inner}`}>
-            {whitePips}
-        </div>
     </div>);
 };
 

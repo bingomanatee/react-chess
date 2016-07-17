@@ -1,6 +1,6 @@
 import dimensions from './dimensions.json';
 import _ from 'lodash';
-import Influence from './PositionInfluence';
+import Influence from './InfluenceManagerTile';
 
 export default (pieces) => {
     var index = {};

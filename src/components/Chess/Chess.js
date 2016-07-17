@@ -32,6 +32,7 @@ export class Chess extends React.Component {
         return (
             <div className={classes.chessContainer}>
                 <h2>Chess {this.moving()}</h2>
+                <p>{this.props.whoseMove ? 'White' : 'Black'}'s move</p>
                 <section className={classes.board}>
                     {this.board(this.props.rows, this.props.columns)}
                 </section>

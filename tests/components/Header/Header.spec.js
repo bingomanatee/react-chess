@@ -27,12 +27,12 @@ describe('(Component) Header', () => {
       )).to.be.true
     })
 
-    it('Should render a Link to Counter route', () => {
+    it('Should render a Link to Chess route', () => {
       expect(_wrapper.contains(
-        <Link activeClassName={classes.activeRoute} to='/counter'>
-          Counter
+        <Link activeClassName={classes.activeRoute} to='/chess'>
+          Augmented Chess
         </Link>
       )).to.be.true
     })
   })
-})
+});

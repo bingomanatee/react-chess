@@ -50,7 +50,7 @@ export default class Position {
      * @param pos {Position}
      * @returns {boolean}
      */
-    samePosition(pos) {
+    samePosition (pos) {
         if (!(pos && (typeof pos === 'object') && (pos.row && pos.column))) {
             debugger;
             throw new Error(`bad input to samePosition ${pos}`);
@@ -62,12 +62,16 @@ export default class Position {
      *
      * @param pos {Position}
      */
-    update(pos) {
+    moveTo (pos) {
         this.row = pos.row;
         this.column = pos.column;
     }
 
-    toString() {
+    toString () {
+        return this.posIndex;
+    }
+
+    get posIndex () {
         return `${this.row}${this.column}`;
     }
 }

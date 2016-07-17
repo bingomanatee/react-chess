@@ -35,8 +35,8 @@ export class Tile extends Component {
 
     mouseMove (e) {
         const myPiece = this.myPiece();
-        console.log('at tile - hovering over', this.props.position.toString(), myPiece ? myPiece.toString() : '');
-        if (!myPiece) {
+       // console.log('at tile - hovering over', this.props.position.toString(), myPiece ? myPiece.toString() : '');
+        if (!myPiece || (myPiece.color !== this.props.whoseMove)) {
             if (this.props.hoveringOver) {
                 this.props.hover(false);
             }
@@ -72,11 +72,10 @@ export class Tile extends Component {
             }
         }
         const myPiece = this.myPiece();
-        if (!myPiece) {
-            return;
+        if (!(!myPiece || myPiece.color !== this.props.whoseMove)) {
+            this.props.moveStart(myPiece);
         }
         // @TODO: block unmovble pieces
-        this.props.moveStart(myPiece);
     }
 
     style () {
@@ -84,8 +83,8 @@ export class Tile extends Component {
 
         const influence = this.props.influence[0].at(this.props.position);
 
-        if (influence.piece && ((!!influence.blackInfluence) !== (!!influence.whiteInfluence))) {
-            if (influence.blackInfluence) {
+        if (influence.piece && ((!!influence.blackPower) !== (!!influence.whitePrivilege))) {
+            if (influence.blackPower) {
                 if (influence.piece.color) {
                     out.borderColor= WARNING;
                     out.borderWidth=3;
