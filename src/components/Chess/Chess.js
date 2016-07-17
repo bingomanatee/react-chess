@@ -2,15 +2,10 @@ import React, {PropTypes} from 'react';
 import classes from './chess.scss';
 import Position from 'routes/Chess/modules/Position';
 import Tile from './Tile';
+import chessProps from './chessProps';
 
 export class Chess extends React.Component {
-    static propTypes = {
-        rows: PropTypes.array.isRequired,
-        influence: PropTypes.array.isRequired,
-        rows: PropTypes.array.isRequired,
-        pieces: PropTypes.array.isRequired,
-        move: PropTypes.func.isRequired
-    };
+    static propTypes = chessProps;
 
     board (rows, columns) {
         var out = [];

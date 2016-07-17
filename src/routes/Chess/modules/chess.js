@@ -1,11 +1,15 @@
 import Piece from './Piece';
 import dimensions from './dimensions.json';
 import influence from './influence';
+import _ from 'lodash';
 
 // ------------------------------------
 // Constants
 // ------------------------------------
 export const MOVE = 'MOVE';
+export const HOVER = 'HOVER';
+export const MOVE_START = 'MOVE_START';
+export const MOVE_COMPLETE = 'MOVE_COMPLETE';
 
 // ------------------------------------
 // Actions
@@ -16,29 +20,79 @@ export function move (location, toLocation) {
         payload: [location, toLocation]
     };
 }
+export function hover (position) {
+    return {
+        type: HOVER,
+        payload: position
+    };
+}
+
+export function moveStart (piece) {
+    return {
+        type: MOVE_START,
+        payload: piece
+    }
+}
+
+export function moveComplete (piece) {
+    return {
+        type: MOVE_COMPLETE,
+        payload: piece
+    }
+}
 
 export const actions = {
-    move
+    move,
+    hover,
+    moveStart,
+    moveComplete
 };
+
 
 // ------------------------------------
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
     [MOVE]: (state, action) => {
-        const moves = action.moves.push(action.payload);
-        const fromPos = action.payload[0];
-        const toPos = action.payload[1];
-        const pieces = action.pieces.map(piece => {
-            let newPiece = piece.clone();
+        /*  const moves = action.moves.push(action.payload);
+         const fromPos = action.payload[0];
+         const toPos = action.payload[1];
+         const pieces = action.pieces.map(piece => {
+         let newPiece = piece.clone();
 
-            if (newPiece.equals(fromPos)) {
-                newPiece.update(toPos);
+         if (newPiece.samePosition(fromPos)) {
+         newPiece.update(toPos);
+         }
+         return newPiece;
+         });*/
+    },
+
+    [MOVE_START]: (state, action) => {
+        return Object.assign({}, state, {moving: action.payload, hover: false});
+    },
+
+    [HOVER]: (state, action) => {
+        return Object.assign({}, state, {hoveringOver: action.payload});
+    },
+
+    [MOVE_COMPLETE]: (state, action) => {
+        let position = action.payload;
+        if (position.samePosition(state.moving)) {
+            return Object.assign({}, state, {moving: false, hover: state.move})
+        }
+
+        let pieces = state.pieces.map(piece => {
+            if (piece.samePosition(position)) {
+                return false;
             }
-            return newPiece;
+            let out = piece.clone();
+            if (out.samePosition(state.moving)){
+                out.moveTo(position);
+            }
+            return out;
         });
 
-
+        return Object.assign({}, state, {pieces, influence: influence(pieces), moving: false, hover: false});
     }
 };
 
@@ -56,7 +110,10 @@ const initialState = {
         new Piece('K', true, 1, 'd'),
         new Piece('Q', true, 1, 'e')
     ],
-    moves: []
+    moves: [],
+    hoveringOver: false,
+    moving: false,
+    history: []
 };
 Object.assign(initialState, dimensions);
 
@@ -72,6 +129,7 @@ for (var column of dimensions.columns) {
 }
 
 initialState.influence = influence(initialState.pieces);
+initialState.history.push(initialState.pieces);
 
 const echo = (state) => state;
 export const chessReducer = (state = initialState, action) => (ACTION_HANDLERS[action.type] || echo)(state, action);

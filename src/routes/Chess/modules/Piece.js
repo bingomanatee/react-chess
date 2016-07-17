@@ -1,15 +1,44 @@
 const typeRE = /^[KQRBNP]$/;
 import Position from './Position';
 
+let pieceId = 0;
 export default class Piece extends Position {
     constructor (pieceType, isWhite, row, column) {
         super(row, column);
+        this._id = ++pieceId;
         this.type = pieceType;
         this.color = isWhite;
+        this.moved = false;
     }
 
     clone () {
         return new Piece(this.type, this.color, this.row, this.column);
+    }
+
+    get id () {
+        return this._id;
+    }
+
+    moveTo(pos) {
+        this.row = pos.row;
+        this.column = pos.column;
+        this.moved = true;
+    }
+
+    /**
+     *
+     * @param val {boolean}
+     */
+    set moved (val) {
+        this._moved = !!val;
+    }
+
+    /**
+     *
+     * @returns {boolean|*}
+     */
+    get moved () {
+        return this._moved;
     }
 
     /**

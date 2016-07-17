@@ -1,6 +1,6 @@
 
 $lineSolid: 0.125;
-$contrast: 0.06;
+$contrast: 0.02;
 $dark: floor(255 * (1 - $contrast));
 
 .board, .chessContainer {
@@ -8,7 +8,9 @@ $dark: floor(255 * (1 - $contrast));
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  flex-grow: 1
+  flex-grow: 1;
+  max-width: 800px;
+  max-height: 800px;
 }
 
 .row {
@@ -38,10 +40,25 @@ $dark: floor(255 * (1 - $contrast));
   flex-grow: 1
 }
 
-.piece {
+.piece, .influence, .influence__inner, .hover {
   position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   height: 100%;
+  background-position: top left;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.influence__inner{
+  background-repeat: repeat-x;
+}
+
+.piece, .influence__black {
+  left: 0;
+  top: 0
+}
+
+.influence__white {
+  left: 0;
+  bottom: 0
 }

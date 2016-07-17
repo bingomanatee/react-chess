@@ -1,4 +1,6 @@
 const columnRE = /^[abcdefgh]$/;
+import dimensions from './dimensions.json';
+import _ from 'lodash';
 
 export default class Position {
     constructor (row, column) {
@@ -18,6 +20,14 @@ export default class Position {
             throw new Error(`val out of range ${val}`);
         }
         this._row = val;
+    }
+
+    get rowIndex () {
+        return _.indexOf(dimensions.rows, this.row);
+    }
+
+    get columnIndex () {
+        return _.indexOf(dimensions.columns, this.column);
     }
 
     get row () {
@@ -40,7 +50,11 @@ export default class Position {
      * @param pos {Position}
      * @returns {boolean}
      */
-    equals(pos) {
+    samePosition(pos) {
+        if (!(pos && (typeof pos === 'object') && (pos.row && pos.column))) {
+            debugger;
+            throw new Error(`bad input to samePosition ${pos}`);
+        }
         return this.row === pos.row && pos.column === this.column;
     }
 

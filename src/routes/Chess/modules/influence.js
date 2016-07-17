@@ -8,11 +8,17 @@ export default (pieces) => {
         return dimensions.columns.map((column) => new Influence(row, column, index));
     }));
 
-    for (let pi of board) index[pi.toString()] = pi;
+    for (let pi of board) {
+        index[pi.toString()] = pi;
+    }
 
     for (let piece of pieces) {
         let pieceInfluence = index[piece.toString()];
         pieceInfluence.piece = piece;
+    }
+
+    for (let influence of board) {
+        influence.extendInfluence();
     }
 
     return board;

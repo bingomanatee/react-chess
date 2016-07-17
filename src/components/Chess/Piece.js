@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, {PropTypes, Component} from 'react';
 import classes from './chess.scss';
-import _ from 'lodash';
+import chessProps from './chessProps';
 
 import blackP from './images/blackP.svg';
 import blackR from './images/blackR.svg';
@@ -31,32 +31,41 @@ var pieces = {
     whiteQ
 };
 
-export const Piece = (props) => {
-    var myPiece = props.pieces.reduce((found, piece) => {
-        if (piece && piece.equals(props.position)) return piece;
-        return found;
-    }, false);
+class Piece extends Component {
+    static  propTypes = chessProps;
 
-    if (!myPiece) {
-        return <span />;
+    myPiece () {
+        const pos = this.props.position;
+        return this.props.pieces.reduce((found, piece) => {
+            if (piece && piece.samePosition(pos)) {
+                return piece;
+            }
+            return found;
+        }, false);
     }
-    const image = pieces[myPiece.name];
-    const style = {
-        backgroundImage: `url(${image})`,
-        backgroundSize: 'contain',
-        backgroundPosition: 'center center'
-    };
 
-    return (<div className={classes.piece} style={style}>
+    render () {
+        const props = this.props;
+
+        var myPiece = this.myPiece();
+
+        if (!myPiece) {
+            return <span key={`piece${props.position.toString()}`}/>;
+        }
+
+        const image = pieces[myPiece.name];
+        const style = {
+            backgroundImage: `url(${image})`,
+            backgroundSize: 'contain',
+            backgroundPosition: 'center center'
+        };
+
+        return (<div key={`piece${props.position.toString()}`} className={classes.piece}
+                     style={style}>
         </div>);
-};
+    }
 
-Piece.propTypes = {
-    position: PropTypes.object.isRequired,
-    rows: PropTypes.array.isRequired,
-    columns: PropTypes.array.isRequired,
-    pieces: PropTypes.array.isRequired,
-    move: PropTypes.func.isRequired
-};
+}
+
 
 export default Piece;
