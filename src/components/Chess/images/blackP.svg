@@ -4,17 +4,27 @@
     <title>blackP</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <path d="M120,114.000752 C120,106.275001 113.736437,100 106.009941,100 L93.9900589,100 C86.271987,100 80,106.26835 80,114.000752 L80,170 L70,170 L80,190 L120,190 L130,170 L120,170 L120,114.000752 Z M100,90 C111.045695,90 120,81.045695 120,70 C120,58.954305 111.045695,50 100,50 C88.954305,50 80,58.954305 80,70 C80,81.045695 88.954305,90 100,90 L100,90 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="64" height="144">
-            <rect x="68" y="48" width="64" height="144" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="10" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.774937726 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M2070,114.000752 C2070,106.275001 2063.73644,100 2056.00994,100 L2043.99006,100 C2036.27199,100 2030,106.26835 2030,114.000752 L2030,170 L2020,170 L2030,190 L2070,190 L2080,170 L2070,170 L2070,114.000752 Z M2050,90 C2061.04569,90 2070,81.045695 2070,70 C2070,58.954305 2061.04569,50 2050,50 C2038.95431,50 2030,58.954305 2030,70 C2030,81.045695 2038.95431,90 2050,90 L2050,90 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="64" height="144">
+            <rect x="2018" y="48" width="64" height="144" fill="white"></rect>
+            <use xlink:href="#path-2" fill="black"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="blackPieces" transform="translate(-2000.000000, 0.000000)"></g>
-        <g id="Combined-Shape">
-            <use fill="#3F3B9A" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        <g id="blackPieces" filter="url(#filter-1)" transform="translate(-1950.000000, 0.000000)">
+            <g id="Combined-Shape">
+                <use fill="#514AE4" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-3)" stroke-width="4" xlink:href="#path-2"></use>
+            </g>
         </g>
     </g>
 </svg>

@@ -127,14 +127,6 @@ export default class PositionInfluence extends Position {
 
     }
 
-    hasOpposingPiece (color) {
-        return this.piece && this.piece.color !== color;
-    }
-
-    hasSamePiece (color) {
-        return this.piece && this.piece.color === color;
-    }
-
     offset (rowOffset, columnOffset) {
         const rowIndex = rowOffset + this.rowIndex;
         const colIndex = columnOffset + this.columnIndex;

@@ -4,17 +4,27 @@
     <title>whiteB</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <path d="M130,170 L130,114.000752 C130,106.275001 123.735742,100 116.008389,100 L83.9916109,100 C76.2653333,100 70,106.26835 70,114.000752 L70,170 L50,190 L150,190 L130,170 L130,170 Z M100.248047,30 L130.496094,89.8450123 L70,89.8450127 L100.248047,30 L100.248047,30 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="164">
-            <rect x="48" y="28" width="104" height="164" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="10" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.774937726 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M480,170 L480,114.000752 C480,106.275001 473.735742,100 466.008389,100 L433.991611,100 C426.265333,100 420,106.26835 420,114.000752 L420,170 L400,190 L500,190 L480,170 L480,170 Z M450.248047,30 L480.496094,89.8450123 L420,89.8450127 L450.248047,30 L450.248047,30 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="164">
+            <rect x="398" y="28" width="104" height="164" fill="white"></rect>
+            <use xlink:href="#path-2" fill="black"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="whitePieces" transform="translate(-400.000000, 0.000000)"></g>
-        <g id="Combined-Shape-Copy-5">
-            <use fill="#FFA200" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <use stroke="#00004A" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        <g id="whitePieces" filter="url(#filter-1)" transform="translate(-350.000000, 0.000000)">
+            <g id="Combined-Shape-Copy-5">
+                <use fill="#FFA200" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use stroke="#514AE4" mask="url(#mask-3)" stroke-width="4" xlink:href="#path-2"></use>
+            </g>
         </g>
     </g>
 </svg>

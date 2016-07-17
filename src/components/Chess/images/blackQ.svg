@@ -4,17 +4,27 @@
     <title>blackQ</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <path d="M150,114.000752 C150,106.275001 143.727569,100 135.990134,100 L64.0098659,100 C56.2743766,100 50,106.26835 50,114.000752 L50,170 L20,170 L20,190 L180,190 L180,170 L150,170 L150,114.000752 Z M99.574579,70.8816209 L82.3538245,93.1491579 L85.9224387,65.2267193 L58,68.7953334 L80.267537,51.574579 L58,34.3538245 L85.9224387,37.9224387 L82.3538245,10 L99.574579,32.267537 L116.795333,10 L113.226719,37.9224387 L141.149158,34.3538245 L118.881621,51.574579 L141.149158,68.7953334 L113.226719,65.2267193 L116.795333,93.1491579 L99.574579,70.8816209 L99.574579,70.8816209 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="164" height="184">
-            <rect x="18" y="8" width="164" height="184" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="10" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.774937726 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M1300,114.000752 C1300,106.275001 1293.72757,100 1285.99013,100 L1214.00987,100 C1206.27438,100 1200,106.26835 1200,114.000752 L1200,170 L1170,170 L1170,190 L1330,190 L1330,170 L1300,170 L1300,114.000752 Z M1249.57458,70.8816209 L1232.35382,93.1491579 L1235.92244,65.2267193 L1208,68.7953334 L1230.26754,51.574579 L1208,34.3538245 L1235.92244,37.9224387 L1232.35382,10 L1249.57458,32.267537 L1266.79533,10 L1263.22672,37.9224387 L1291.14916,34.3538245 L1268.88162,51.574579 L1291.14916,68.7953334 L1263.22672,65.2267193 L1266.79533,93.1491579 L1249.57458,70.8816209 L1249.57458,70.8816209 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="164" height="184">
+            <rect x="1168" y="8" width="164" height="184" fill="white"></rect>
+            <use xlink:href="#path-2" fill="black"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="blackPieces" transform="translate(-1200.000000, 0.000000)"></g>
-        <g id="Combined-Shape">
-            <use fill="#3F3B9A" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        <g id="blackPieces" filter="url(#filter-1)" transform="translate(-1150.000000, 0.000000)">
+            <g id="Combined-Shape">
+                <use fill="#514AE4" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-3)" stroke-width="4" xlink:href="#path-2"></use>
+            </g>
         </g>
     </g>
 </svg>

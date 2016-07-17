@@ -4,17 +4,27 @@
     <title>whiteR</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <path d="M130,170.425421 L130,114.426173 C130,106.700422 123.735742,100.425421 116.008389,100.425421 L83.9916109,100.425421 C76.2653333,100.425421 70,106.693771 70,114.426173 L70,170.425421 L50,190.425421 L150,190.425421 L130,170.425421 L130,170.425421 Z M50,50 L150,50 L150,90.425421 L50,90.425421 L50,50 L50,50 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="144.425421">
-            <rect x="48" y="48" width="104" height="144.425421" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="10" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.774937726 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M880,170.425421 L880,114.426173 C880,106.700422 873.735742,100.425421 866.008389,100.425421 L833.991611,100.425421 C826.265333,100.425421 820,106.693771 820,114.426173 L820,170.425421 L800,190.425421 L900,190.425421 L880,170.425421 L880,170.425421 Z M800,50 L900,50 L900,90.425421 L800,90.425421 L800,50 L800,50 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="144.425421">
+            <rect x="798" y="48" width="104" height="144.425421" fill="white"></rect>
+            <use xlink:href="#path-2" fill="black"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="whitePieces" transform="translate(-800.000000, 0.000000)"></g>
-        <g id="Combined-Shape-Copy">
-            <use fill="#FFA200" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <use stroke="#00004A" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        <g id="whitePieces" filter="url(#filter-1)" transform="translate(-750.000000, 0.000000)">
+            <g id="Combined-Shape-Copy">
+                <use fill="#FFA200" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use stroke="#514AE4" mask="url(#mask-3)" stroke-width="4" xlink:href="#path-2"></use>
+            </g>
         </g>
     </g>
 </svg>

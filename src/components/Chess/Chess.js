@@ -20,10 +20,18 @@ export class Chess extends React.Component {
         return out;
     }
 
+    moving() {
+        if (this.props.moving) {
+            return `(moving ${this.props.moving.name} from ${this.props.moving.toString()})`;
+        } else {
+            return '';
+        }
+    }
+
     render () {
         return (
             <div className={classes.chessContainer}>
-                <h2>Chess</h2>
+                <h2>Chess {this.moving()}</h2>
                 <section className={classes.board}>
                     {this.board(this.props.rows, this.props.columns)}
                 </section>

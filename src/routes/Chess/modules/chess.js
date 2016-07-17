@@ -72,6 +72,9 @@ const ACTION_HANDLERS = {
     },
 
     [HOVER]: (state, action) => {
+        if (state.moving) {
+            return state;
+        }
         return Object.assign({}, state, {hoveringOver: action.payload});
     },
 
@@ -81,7 +84,7 @@ const ACTION_HANDLERS = {
             return Object.assign({}, state, {moving: false, hover: state.move})
         }
 
-        let pieces = state.pieces.map(piece => {
+        let pieces = _.compact(state.pieces.map(piece => {
             if (piece.samePosition(position)) {
                 return false;
             }
@@ -90,9 +93,15 @@ const ACTION_HANDLERS = {
                 out.moveTo(position);
             }
             return out;
-        });
+        }));
 
-        return Object.assign({}, state, {pieces, influence: influence(pieces), moving: false, hover: false});
+        let newState = Object.assign({}, state);
+        newState.hoveringOver = false;
+        newState.moving = false;
+        newState.pieces = pieces;
+        newState.influence = influence(pieces);
+        newState.history = state.history.concat(pieces);
+        return newState;
     }
 };
 

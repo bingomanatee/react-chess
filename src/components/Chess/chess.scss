@@ -1,8 +1,8 @@
 
 $lineSolid: 0.125;
 $contrast: 0;
-$red: 250;
-$light: 230;
+$red: 255;
+$light: 255;
 $dark: floor($light * (1 - $contrast));
 
 .board, .chessContainer {
@@ -18,6 +18,7 @@ $dark: floor($light * (1 - $contrast));
 .row {
   flex-grow: 1;
   flex-shrink: 0;
+  flex-basis: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -30,11 +31,14 @@ $dark: floor($light * (1 - $contrast));
   border: 1px solid rgba(0,0,0, $lineSolid);
   justify-content: space-between;
   position: relative;
-  background-color: rgb($red,$light, $light);
+  background-color: rgb($light,$light, $light);
+  > * {
+    position: relative;
+  }
 }
 
 .tile__odd {
-  background-color: rgb($red, $dark, $dark);
+  background-color: rgb($light,$light, $light);
 }
 
 .chessContainer {

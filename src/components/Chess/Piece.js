@@ -50,7 +50,7 @@ class Piece extends Component {
         var myPiece = this.myPiece();
 
         if (!myPiece) {
-            return <span key={`piece${props.position.toString()}`}/>;
+            return null;
         }
 
         const image = pieces[myPiece.name];

@@ -32,7 +32,7 @@ export const Hover = (props) => {
             }
         }
     } else if (!props.hoveringOver) {
-        return <span />;
+        return null;
     } else if (props.hoveringOver.samePosition(props.position)) {
         hoverStyle.backgroundImage = `url(${hoverFromImage})`;
     } else {
@@ -57,6 +57,6 @@ export const Hover = (props) => {
     </div>);
 };
 
-Hover.propTypes = chessProps
+Hover.propTypes = chessProps;
 
 export default Hover;

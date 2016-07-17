@@ -14,6 +14,10 @@ export default (pieces) => {
 
     for (let piece of pieces) {
         let pieceInfluence = index[piece.toString()];
+        if (!pieceInfluence) {
+            console.log('cannot find influence');
+            debugger;
+        }
         pieceInfluence.piece = piece;
     }
 

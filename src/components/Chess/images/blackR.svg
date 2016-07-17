@@ -4,17 +4,27 @@
     <title>blackR</title>
     <desc>Created with Sketch.</desc>
     <defs>
-        <path d="M130,170 L130,114.000752 C130,106.275001 123.735742,100 116.008389,100 L83.9916109,100 C76.2653333,100 70,106.26835 70,114.000752 L70,170 L50,190 L150,190 L130,170 L130,170 Z M50,49.574579 L150,49.574579 L150,90 L50,90 L50,49.574579 L50,49.574579 Z" id="path-1"></path>
-        <mask id="mask-2" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="144.425421">
-            <rect x="48" y="47.574579" width="104" height="144.425421" fill="white"></rect>
-            <use xlink:href="#path-1" fill="black"></use>
+        <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="filter-1">
+            <feOffset dx="10" dy="8" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="1" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.774937726 0" type="matrix" in="shadowBlurOuter1" result="shadowMatrixOuter1"></feColorMatrix>
+            <feMerge>
+                <feMergeNode in="shadowMatrixOuter1"></feMergeNode>
+                <feMergeNode in="SourceGraphic"></feMergeNode>
+            </feMerge>
+        </filter>
+        <path d="M880,170 L880,114.000752 C880,106.275001 873.735742,100 866.008389,100 L833.991611,100 C826.265333,100 820,106.26835 820,114.000752 L820,170 L800,190 L900,190 L880,170 L880,170 Z M800,49.574579 L900,49.574579 L900,90 L800,90 L800,49.574579 L800,49.574579 Z" id="path-2"></path>
+        <mask id="mask-3" maskContentUnits="userSpaceOnUse" maskUnits="objectBoundingBox" x="-2" y="-2" width="104" height="144.425421">
+            <rect x="798" y="47.574579" width="104" height="144.425421" fill="white"></rect>
+            <use xlink:href="#path-2" fill="black"></use>
         </mask>
     </defs>
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="blackPieces" transform="translate(-800.000000, 0.000000)"></g>
-        <g id="Combined-Shape">
-            <use fill="#3F3B9A" fill-rule="evenodd" xlink:href="#path-1"></use>
-            <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-2)" stroke-width="4" xlink:href="#path-1"></use>
+        <g id="blackPieces" filter="url(#filter-1)" transform="translate(-750.000000, 0.000000)">
+            <g id="Combined-Shape">
+                <use fill="#514AE4" fill-rule="evenodd" xlink:href="#path-2"></use>
+                <use stroke-opacity="0.705870697" stroke="#FFA200" mask="url(#mask-3)" stroke-width="4" xlink:href="#path-2"></use>
+            </g>
         </g>
     </g>
 </svg>

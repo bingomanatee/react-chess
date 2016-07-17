@@ -3,16 +3,16 @@ import Position from './Position';
 
 let pieceId = 0;
 export default class Piece extends Position {
-    constructor (pieceType, isWhite, row, column, moved) {
+    constructor (pieceType, isWhite, row, column, moved, id) {
         super(row, column);
-        this._id = ++pieceId;
+        this._id = id || ++pieceId;
         this.type = pieceType;
         this.color = isWhite;
         this.moved = moved || false;
     }
 
     clone () {
-      return new Piece(this.type, this.color, this.row, this.column, this.moved);
+      return new Piece(this.type, this.color, this.row, this.column, this.moved, this.id);
     }
 
     get id () {

@@ -105,12 +105,12 @@ export class Tile extends Component {
         const props = this.props;
 
         return (
-            <div onMouseMove={this.mouseMove.bind(this)} onMouseDown={this.mouseClick.bind(this)}
+            <div onMouseMove={this.mouseMove.bind(this)} onMouseUp={this.mouseClick.bind(this)}
                  style={this.style()}
                  className={`${classes.tile} ${oddStyle(props) ? classes.tile__odd : ''}`}>
-                <Influence {...props} />
-                <Piece {...props} />
-                <PieceHover {...props} />
+                <Influence key="i"{...props} />
+                <Piece key="p" {...props} />
+                <PieceHover key-="h" {...props} />
             </div>
         );
     }
