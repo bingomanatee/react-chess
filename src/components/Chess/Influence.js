@@ -3,27 +3,41 @@ import classes from './chess.scss';
 import _ from 'lodash';
 import chessProps from './chessProps';
 
-import black1 from './images/black1.svg';
-import black2 from './images/black2.svg';
-import black3 from './images/black3.svg';
-import black4 from './images/black4.svg';
-import black5 from './images/black5.svg';
-import black6 from './images/black6.svg';
-import black7 from './images/black7.svg';
-import black8 from './images/black8.svg';
+/*
+ import black1 from './images/black1.svg';
+ import black2 from './images/black2.svg';
+ import black3 from './images/black3.svg';
+ import black4 from './images/black4.svg';
+ import black5 from './images/black5.svg';
+ import black6 from './images/black6.svg';
+ import black7 from './images/black7.svg';
+ import black8 from './images/black8.svg';
 
-const blackInfluence = [black1, black2, black3, black4, black5, black6, black7, black8];
+ const blackInfluence = [black1, black2, black3, black4, black5, black6, black7, black8];
 
-import white1 from './images/white1.svg';
-import white2 from './images/white2.svg';
-import white3 from './images/white3.svg';
-import white4 from './images/white4.svg';
-import white5 from './images/white5.svg';
-import white6 from './images/white6.svg';
-import white7 from './images/white7.svg';
-import white8 from './images/white8.svg';
+ import white1 from './images/white1.svg';
+ import white2 from './images/white2.svg';
+ import white3 from './images/white3.svg';
+ import white4 from './images/white4.svg';
+ import white5 from './images/white5.svg';
+ import white6 from './images/white6.svg';
+ import white7 from './images/white7.svg';
+ import white8 from './images/white8.svg';
 
-const whiteInfluence = [white1, white2, white3, white4, white5, white6, white7, white8];
+ const whiteInfluence = [white1, white2, white3, white4, white5, white6, white7, white8];
+ */
+
+import whiteInfluence from './images/white_influence.svg';
+import whiteInfluenceBalanced from './images/white_influence_balanced.svg';
+
+import blackInfluence from './images/black_influence.svg';
+import blackInfluenceBalanced from './images/black_influence_balanced.svg';
+
+const blackPipStyle = {backgroundImage: `url(${blackInfluence})`};
+const whitePipStyle = {backgroundImage: `url(${whiteInfluence})`};
+
+const blackPipStyleBalanced = {backgroundImage: `url(${blackInfluenceBalanced})`};
+const whitePipStyleBalanced = {backgroundImage: `url(${whiteInfluenceBalanced})`};
 
 const GRADIENTS = 4;
 const GRADIENTS_DENOM = 6;
@@ -43,26 +57,42 @@ export const Influence = (props) => {
         style.backgroundColor = color;
     }
 
-    const blackStyle = {};
-    let image;
-    if (tileInfluence.blackInfluence) {
-         image = blackInfluence[tileInfluence.blackInfluence - 1] || _.last(blackInfluence);
-        blackStyle.backgroundImage = `url(${image})`;
+    let blackPips = [];
+    for (let b = 0; b < tileInfluence.blackInfluence; ++b) {
+        let s = blackPipStyle;
+        if (b < tileInfluence.whiteInfluence) {
+            s = blackPipStyleBalanced;
+        }
+        blackPips.push(<div key={`pip-${b}-b`} className={classes.influence__pip} style={s}>&nbsp;</div>);
     }
-    const whiteStyle = {};
-    if (tileInfluence.whiteInfluence) {
-        image = whiteInfluence[tileInfluence.whiteInfluence - 1] || _.last(whiteInfluence);
-        whiteStyle.backgroundImage = `url(${image})`;
+    if (!blackPips.length) {
+        blackPips = '';
     }
+
+    let whitePips = [];
+    for (let b = 0; b < tileInfluence.whiteInfluence; ++b) {
+        let s = whitePipStyle;
+        if (b < tileInfluence.blackInfluence) {
+        s = whitePipStyleBalanced;
+        }
+        whitePips.push(<div key={`pip-${b}-w`} className={classes.influence__pip} style={s}>&nbsp;</div>);
+    }
+    if (!whitePips.length) {
+        whitePips = '';
+    }
+
 
     return (<div key={`influence${props.position.toString()}`} className={classes.influence} style={style}>
         <div key={`influence${props.position.toString()}-black`}
-             className={`${classes.influence__inner} ${classes.influence__black}`}
-             style={blackStyle}>&nbsp;
+             className={`${classes.influence__inner} ${classes.influence__inner_black}`}>
+            {blackPips}
+        </div>
+        <div key={`influence${props.position.toString()}-mid`} className={classes.influence__inner_mid}>
+            &nbsp;
         </div>
         <div key={`influence${props.position.toString()}-white`}
-             className={`${classes.influence__inner} ${classes.influence__white}`}
-             style={whiteStyle}>&nbsp;
+             className={`${classes.influence__inner}`}>
+            {whitePips}
         </div>
     </div>);
 };

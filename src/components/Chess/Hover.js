@@ -8,19 +8,21 @@ import hoverToImage from './images/hoverTo.svg';
 
 export const Hover = (props) => {
     let hoverStyle = {};
+    const influence = props.influence[0].at(props.position);
+    const myPiece = influence.piece;
 
     if (props.moving) {
         if (props.moving.samePosition(props.position)) {
             hoverStyle.backgroundImage = `url(${hoverFromImage})`;
         } else {
-            const thisName = props.position.toString();
-            const influence = props.influence[0].index[thisName];
             let isMoving = false;
             if (influence.canMoveInto.length) {
                 for (let canMove of influence.canMoveInto) {
                     if (canMove.samePosition(props.moving)) {
-                        isMoving = true;
-                        break;
+                        if (!myPiece || myPiece.color !== canMove.piece.color) {
+                            isMoving = true;
+                            break;
+                        }
                     }
                 }
             }
@@ -34,14 +36,14 @@ export const Hover = (props) => {
     } else if (props.hoveringOver.samePosition(props.position)) {
         hoverStyle.backgroundImage = `url(${hoverFromImage})`;
     } else {
-        const thisName = props.position.toString();
-        const influence = props.influence[0].index[thisName];
         let canMoveTo = false;
         if (influence.canMoveInto.length) {
             for (let canMove of influence.canMoveInto) {
                 if (canMove.samePosition(props.hoveringOver)) {
-                    canMoveTo = true;
-                    break;
+                    if (!myPiece || myPiece.color !== canMove.piece.color) {
+                        canMoveTo = true;
+                        break;
+                    }
                 }
             }
         }

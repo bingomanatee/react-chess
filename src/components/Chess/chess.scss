@@ -1,7 +1,9 @@
 
 $lineSolid: 0.125;
-$contrast: 0.02;
-$dark: floor(255 * (1 - $contrast));
+$contrast: 0;
+$red: 250;
+$light: 230;
+$dark: floor($light * (1 - $contrast));
 
 .board, .chessContainer {
   display: flex;
@@ -9,8 +11,8 @@ $dark: floor(255 * (1 - $contrast));
   justify-content: space-between;
   align-items: stretch;
   flex-grow: 1;
-  max-width: 800px;
-  max-height: 800px;
+  max-width: 1000px;
+  max-height: 1000px;
 }
 
 .row {
@@ -28,10 +30,11 @@ $dark: floor(255 * (1 - $contrast));
   border: 1px solid rgba(0,0,0, $lineSolid);
   justify-content: space-between;
   position: relative;
+  background-color: rgb($red,$light, $light);
 }
 
 .tile__odd {
-  background-color: rgb($dark, $dark, $dark);
+  background-color: rgb($red, $dark, $dark);
 }
 
 .chessContainer {
@@ -40,7 +43,7 @@ $dark: floor(255 * (1 - $contrast));
   flex-grow: 1
 }
 
-.piece, .influence, .influence__inner, .hover {
+.piece, .influence, .hover {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -49,8 +52,31 @@ $dark: floor(255 * (1 - $contrast));
   background-repeat: no-repeat;
 }
 
+.influence {
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
 .influence__inner{
-  background-repeat: repeat-x;
+  flex-grow: 0;
+  flex-basis: 15%;
+  flex-shrink: 0;
+  display: flex;
+flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+.influence__inner_black {
+  align-items: flex-start;
+}
+
+.influence__inner_mid{
+  flex-grow: 1;
 }
 
 .piece, .influence__black {
@@ -61,4 +87,13 @@ $dark: floor(255 * (1 - $contrast));
 .influence__white {
   left: 0;
   bottom: 0
+}
+
+.influence__pip {
+  height: 20px;
+  flex-basis: 30px;
+  flex-shrink: 1;
+  background-position: top left;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
