@@ -14,7 +14,7 @@ export const HomeView = () => (
 
         <p>This is entirely clientside using React and Flux. Enjoy!
         </p>
-        <p><Link to="/chess" activeClassName={classes.activeRoute}>
+        <p><Link to="chess" activeClassName={classes.activeRoute}>
             Let's play augmentedd Augmented Chess
         </Link></p>
     </div>
