@@ -13,4 +13,8 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
+  <component name="ProjectPlainTextFileTypeManager">
+    <file url="file://$PROJECT_DIR$/app.1b089948eaeca449698d.js" />
+    <file url="file://$PROJECT_DIR$/vendor.0fc9e2a66edc44ed590e.js" />
+  </component>
 </project>

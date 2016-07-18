@@ -5,7 +5,7 @@ import classes from './Header.scss';
 export const Header = () => (
   <div>
     <h1 className={classes.title}>React Redux Starter Kit</h1>
-    <Link to="/react-chess" activeClassName={classes.activeRoute}>
+    <Link to="/" activeClassName={classes.activeRoute}>
       Home
     </Link>
     {' · '}
