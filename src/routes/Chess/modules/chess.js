@@ -1,6 +1,6 @@
 import Piece from './Piece';
 import dimensions from './dimensions.json';
-import influence from './influence';
+import InfluenceManager from './InfluenceManager';
 import _ from 'lodash';
 
 // ------------------------------------
@@ -10,12 +10,14 @@ import _ from 'lodash';
 export const HOVER = 'HOVER';
 export const MOVE_START = 'MOVE_START';
 export const MOVE_COMPLETE = 'MOVE_COMPLETE';
+export const MOVE_CANCEL = 'MOVE_CANCEL';
 
 // ------------------------------------
 // Actions
 // ------------------------------------
 
 export function hover (position) {
+    console.log('HOVERING AT ', position.toString());
     return {
         type: HOVER,
         payload: position
@@ -23,6 +25,7 @@ export function hover (position) {
 }
 
 export function moveStart (piece) {
+    console.log('MOVING FROM ', piece.name, piece.posIndex);
     return {
         type: MOVE_START,
         payload: piece
@@ -30,16 +33,24 @@ export function moveStart (piece) {
 }
 
 export function moveComplete (position) {
+    console.log('MOVING TO ', position.posIndex);
     return {
         type: MOVE_COMPLETE,
         payload: position
     }
 }
 
+export function moveCancel () {
+    return {
+        type: MOVE_CANCEL
+    }
+}
+
 export const actions = {
     hover,
     moveStart,
-    moveComplete
+    moveComplete,
+    moveCancel
 };
 
 
@@ -49,6 +60,10 @@ export const actions = {
 const ACTION_HANDLERS = {
     [MOVE_START]: (state, action) => {
         return Object.assign({}, state, {moving: action.payload, hover: false});
+    },
+
+    [MOVE_CANCEL]: (state) => {
+        return Object.assign({}, state, {moving: false});
     },
 
     [HOVER]: (state, action) => {
@@ -64,7 +79,7 @@ const ACTION_HANDLERS = {
         // @TODO: validate moving?
 
         if (position.samePosition(state.moving)) {
-            return Object.assign({}, state, {moving: false, hover: state.move})
+            return Object.assign({}, state, {moving: false});
         }
 
         let takenPiece = false;
@@ -76,13 +91,24 @@ const ACTION_HANDLERS = {
             return piece;
         }));
 
+        if (takenPiece) {
+            state.influence.removePiece(takenPiece);
+        }
+        state.influence.removePiece(movingPiece);
+        movingPiece.moveTo(position);
+        state.influence.addPiece(movingPiece);
+        state.influence.recalculate();
+
         let newState = Object.assign({}, state);
+
         newState.hoveringOver = false;
         newState.moving = false;
         newState.pieces = pieces;
-        newState.influence = influence(pieces);
+        newState.influence.recalculateFor(pieces);
         newState.history = state.history.concat(pieces);
         newState.whoseMove = !state.whoseMove;
+        ++newState.turn;
+
         return newState;
     }
 };
@@ -105,8 +131,8 @@ const initialState = {
     hoveringOver: false,
     moving: false,
     history: [],
-    influence: [],
-    whoseMove: true
+    whoseMove: true,
+    turn: 1
 };
 Object.assign(initialState, dimensions);
 
@@ -121,7 +147,7 @@ for (var column of dimensions.columns) {
     initialState.pieces.push(new Piece('P', false, 7, column))
 }
 
-// initialState.influence = influence(initialState.pieces);
+initialState.influence = new InfluenceManager(initialState.pieces);
 initialState.history.push(initialState.pieces);
 
 const echo = (state) => state;

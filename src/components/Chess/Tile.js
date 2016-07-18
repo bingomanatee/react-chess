@@ -3,11 +3,12 @@ import classes from './chess.scss';
 // import Position from 'routes/Chess/modules/Position';
 import _ from 'lodash';
 import Piece from './Piece';
-import Influence from './Influence';
 import PieceHover from './Hover';
 import chessProps from './chessProps';
 
 const WARNING = 'rgb(204,0,0)';
+const GRADIENTS = 3;
+const GRADIENTS_DENOM = 6;
 
 const oddStyle = (props) => {
     const row = props.position.row;
@@ -23,80 +24,78 @@ export class Tile extends Component {
 
     static propTypes = chessProps;
 
-    myPiece () {
-        const pos = this.props.position;
-        return this.props.pieces.reduce((found, piece) => {
-            if (piece && piece.samePosition(pos)) {
-                return piece;
-            }
-            return found;
-        }, false);
+    get myPiece () {
+        return this.myTile.piece;
+    }
+
+    get myTile () {
+        return this.props.influence.at(this.props.position);
     }
 
     mouseMove (e) {
-        const myPiece = this.myPiece();
-       // console.log('at tile - hovering over', this.props.position.toString(), myPiece ? myPiece.toString() : '');
-        if (!myPiece || (myPiece.color !== this.props.whoseMove)) {
-            if (this.props.hoveringOver) {
-                this.props.hover(false);
-            }
+        let myPiece = this.myPiece;
+        if (this.props.moving) {
             return;
         }
+        const tile = this.myTile;
+        // console.log('at tile - hovering over', this.props.position.posIndex, myPiece ? myPiece.posIndex : '');
 
-        if (this.props.hoveringOver) {
-            if (this.props.hoveringOver.samePosition(myPiece)) {
-                return;
+        if (myPiece.color !== this.props.whoseMove) {
+            myPiece = false;
+        }
+
+        if (myPiece) {
+            if (this.props.hoveringOver) {
+                if (!myPiece.samePiece(this.props.hoveringOver)) {
+                    this.props.hover(myPiece);
+                }
             } else {
                 this.props.hover(myPiece);
             }
-        } else {
-            this.props.hover(myPiece);
-        }
-    }
-
-    movingCanMoveTo() {
-        const influence = this.props.influence[0].at(this.props.position);
-        if (influence.canBeMovedToFrom(this.props.moving)){
-            this.props.moveComplete(this.props.position);
+        } else if (this.props.hoveringOver) {
+            this.props.hover(false);
         }
     }
 
     mouseClick (e) {
-        const pos = this.props.position;
         if (this.props.moving) {
-            if (this.props.moving.samePosition(pos)) {
-                return;
+            if (this.props.moving.samePosition(this.props.position)) {
+                this.props.moveCancel();
+            } else if (this.myTile.canBeMovedToByPiece(this.props.moving)) {
+                this.props.moveComplete(this.props.position);
             }
-            if (this.movingCanMoveTo()){
-                this.props.moveEnd(pos);
+        } else {
+            const myPiece = this.myPiece;
+            if (!(!myPiece || myPiece.color !== this.props.whoseMove)) {
+                this.props.moveStart(myPiece);
             }
-        }
-        const myPiece = this.myPiece();
-        if (!(!myPiece || myPiece.color !== this.props.whoseMove)) {
-            this.props.moveStart(myPiece);
         }
         // @TODO: block unmovble pieces
     }
 
+    get influenceColor () {
+        const net = this.myTile.netInfluence;
+        var opacity = Math.abs(Math.min(4, Math.max(-GRADIENTS, net)) / GRADIENTS_DENOM);
+        if (net > 0) {
+            return `rgba(255, 162,0,${opacity})`;
+        } else if (net < 0) {
+            return `rgba(63, 59, 154, ${opacity})`;
+        } else {
+            return '';
+        }
+    }
+
     style () {
         const out = {};
+        const tile = this.myTile;
 
-        const influence = this.props.influence[0].at(this.props.position);
-
-        if (influence.piece && ((!!influence.blackPower) !== (!!influence.whitePrivilege))) {
-            if (influence.blackPower) {
-                if (influence.piece.color) {
-                    out.borderColor= WARNING;
-                    out.borderWidth=3;
-                }
-            } else {
-                if (!influence.piece.color) {
-                    out.borderColor= WARNING;
-                    out.borderWidth=3;
-                }
+        if (tile.freeTake) {
+            if (tile.piece.color) {
+                out.borderColor = WARNING;
+                out.borderWidth = 3;
             }
         }
-
+        out.backgroundColor = this.influenceColor;
         return out;
     }
 
@@ -104,11 +103,12 @@ export class Tile extends Component {
         const props = this.props;
 
         return (
-            <div onMouseMove={this.mouseMove.bind(this)} onMouseUp={this.mouseClick.bind(this)}
+            <div key={`tile-${this.props.position.posIndex}`}
+                 onMouseMove={this.mouseMove.bind(this)}
+                 onMouseUp={this.mouseClick.bind(this)}
                  style={this.style()}
                  className={`${classes.tile} ${oddStyle(props) ? classes.tile__odd : ''}`}>
-                <Influence key="i"{...props} />
-                <Piece key="p" {...props} />
+                <Piece key="p" piece={this.myPiece} position={this.props.position}/>
                 <PieceHover key-="h" {...props} />
             </div>
         );

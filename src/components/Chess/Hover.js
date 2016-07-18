@@ -1,59 +1,33 @@
 import React, {PropTypes} from 'react';
 import classes from './chess.scss';
-import _ from 'lodash';
 import chessProps from './chessProps';
 
 import hoverFromImage from './images/hoverFrom.svg';
 import hoverToImage from './images/hoverTo.svg';
 
 export const Hover = (props) => {
-    let hoverStyle = {};
-    const influence = props.influence[0].at(props.position);
-    const myPiece = influence.piece;
+    let style = {};
+    const tile = props.influence.at(props.position);
+    const myPiece = tile.piece;
 
     if (props.moving) {
-        if (props.moving.samePosition(props.position)) {
-            hoverStyle.backgroundImage = `url(${hoverFromImage})`;
-        } else {
-            let isMoving = false;
-            if (influence.canMoveInto.length) {
-                for (let canMove of influence.canMoveInto) {
-                    if (canMove.samePosition(props.moving)) {
-                        if (!myPiece || myPiece.color !== canMove.piece.color) {
-                            isMoving = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (isMoving) {
-                hoverStyle.backgroundImage = `url(${hoverToImage})`;
-            }
+        if (tile.hasPiece(props.moving)) {
+            style.backgroundImage = `url(${hoverFromImage})`;
+        } else if (tile.canBeMovedToByPiece(props.moving)) {
+            style.backgroundImage = `url(${hoverToImage})`;
         }
     } else if (props.hoveringOver) {
         if (props.hoveringOver.samePosition(props.position)) {
-            hoverStyle.backgroundImage = `url(${hoverFromImage})`;
-        } else {
-            let canMoveTo = false;
-            if (influence.canMoveInto.length) {
-                for (let canMove of influence.canMoveInto) {
-                    if (canMove.samePosition(props.hoveringOver)) {
-                        if (!myPiece || myPiece.color !== canMove.piece.color) {
-                            canMoveTo = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (canMoveTo) {
-                hoverStyle.backgroundImage = `url(${hoverToImage})`;
+            style.backgroundImage = `url(${hoverFromImage})`;
+        } else if (tile.canBeMovedToByPiece(props.hoveringOver)) {
+            if (!myPiece || (!myPiece.sameColor(props.hoveringOver))) {
+                style.backgroundImage = `url(${hoverToImage})`;
             }
         }
+
     }
 
-    return (<div key={`hover-${props.position.toString()}`} className={classes.hover} style={hoverStyle}>
+    return (<div key={`hover-${props.position.posIndex}`} className={classes.hover} style={style}>
     </div>);
 };
 

@@ -12,14 +12,22 @@ export default class Piece extends Position {
     }
 
     clone () {
-      return new Piece(this.type, this.color, this.row, this.column, this.moved, this.id);
+        return new Piece(this.type, this.color, this.row, this.column, this.moved, this.id);
+    }
+
+    samePiece (piece) {
+        return piece.id === this.id;
+    }
+
+    sameColor(piece) {
+        return piece.color === this.color;
     }
 
     get id () {
         return this._id;
     }
 
-    moveTo(pos) {
+    moveTo (pos) {
         this.row = pos.row;
         this.column = pos.column;
         this.moved = true;
@@ -68,7 +76,7 @@ export default class Piece extends Position {
     }
 
     get colorName () {
-       return this.color ? 'white' : 'black';
+        return this.color ? 'white' : 'black';
     }
 
     get colorLetter () {

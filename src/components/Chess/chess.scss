@@ -16,13 +16,12 @@ $dark: floor($light * (1 - $contrast));
 }
 
 .row {
-  flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 100%;
+  flex-basis: 150px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
+  height: 12.5%;
 }
 
 .tile {
@@ -35,6 +34,12 @@ $dark: floor($light * (1 - $contrast));
   > * {
     position: relative;
   }
+}
+
+.id {
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
 .tile__odd {
@@ -54,6 +59,7 @@ $dark: floor($light * (1 - $contrast));
   background-position: top left;
   background-size: contain;
   background-repeat: no-repeat;
+  backgroundPosition: center center;
 }
 
 .influence {

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { hover, moveStart , moveComplete } from '../modules/chess';
+import { hover, moveStart , moveComplete , moveCancel } from '../modules/chess';
 
 /*  This is a container component. Notice it does not contain any JSX,
  nor does it import React. This component is **only** responsible for
@@ -13,7 +13,7 @@ import Chess from 'components/Chess';
  implementing our wrapper around increment; the component doesn't care   */
 
 const mapActionCreators = {
-    hover, moveStart, moveComplete
+    hover, moveStart, moveComplete, moveCancel
 };
 
 const mapStateToProps = (state) => state.chess;

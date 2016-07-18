@@ -18,15 +18,21 @@ export default class InfluenceManager {
             }
         }
         if (pieces) {
-            for (let piece of pieces) {
-                this.addPiece(piece, true);
-            }
-            this.recalculate();
+            this.recalculateFor(pieces);
         }
     }
 
     at (position) {
         return this.placeIndex[position.toString()];
+    }
+
+    recalculateFor(pieces) {
+        this._pieceIndex = [];
+        this._pieceList = [];
+        for (let piece of pieces) {
+            this.addPiece(piece, true);
+        }
+        this.recalculate();
     }
 
     get placeList () {

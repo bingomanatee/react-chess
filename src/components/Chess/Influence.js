@@ -44,8 +44,7 @@ const GRADIENTS_DENOM = 6;
 
 export const Influence = (props) => {
     const style = {};
-    const position = props.position.toString();
-    var tileInfluence = props.influence[0].index[position];
+    var tileInfluence = props.influence.at(props.position);
     let color = null;
     if (tileInfluence.netInfluence) {
         var opacity = Math.abs(Math.min(4, Math.max(-GRADIENTS, tileInfluence.netInfluence)) / GRADIENTS_DENOM);
@@ -58,7 +57,7 @@ export const Influence = (props) => {
     }
 
 
-    return (<div key={`influence${props.position.toString()}`} className={classes.influence} style={style}>
+    return (<div key={`influence${props.position.posIndex}`} className={classes.influence} style={style}>
     </div>);
 };
 

@@ -10,9 +10,9 @@ export default class InfluenceManagerTile extends Position {
         this._manager = manager;
     }
 
-    canBeMovedToFrom (pos) {
-        for (let piece of this.canMoveInto) {
-            if (piece.samePosition(pos)) {
+    canBeMovedToByPiece (piece) {
+        for (let movingPiece of this.canMoveInto) {
+            if (movingPiece.samePiece(piece)) {
                 return true;
             }
         }
@@ -29,6 +29,10 @@ export default class InfluenceManagerTile extends Position {
         if (this.piece.id === piece.id) {
             this.piece = false;
         }
+    }
+
+    hasPiece (piece) {
+        return piece && this.piece && this.piece.samePiece(piece);
     }
 
     removeCanMoveInto (piece) {
@@ -93,6 +97,29 @@ export default class InfluenceManagerTile extends Position {
             }
         }
         return i;
+    }
+
+    get freeTake () {
+        if (!this.piece) return;
+        let hasWhite = false;
+        let hasBlack = false;
+
+        for (let piece of this.canMoveInto) {
+            if (piece.color) {
+                hasWhite = true
+            } else {
+                hasBlack = true;
+            }
+            if (hasWhite && hasBlack) {
+                break;
+            }
+        }
+
+        if (this.piece.color) {
+            return hasBlack && (!hasWhite);
+        } else {
+            return !hasBlack && hasWhite;
+        }
     }
 
     get manager () {
