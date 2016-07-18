@@ -23,8 +23,8 @@ export default {
     // Overrides when NODE_ENV === 'production'
     // ======================================================
     production: (config) => ({
-        compiler_public_path: '/bingomanatee/react-chess',
-        server_host: 'www.github.com', // use string 'localhost' to prevent exposure on local network
+        compiler_public_path: '/react-chess',
+        server_host: 'bingomanatee.github.com', // use string 'localhost' to prevent exposure on local network
         dir_dist: '/',
         server_port: 80,
         compiler_fail_on_warning: false,
