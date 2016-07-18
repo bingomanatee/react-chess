@@ -7,7 +7,7 @@ import ChessRoute from './Chess';
     PlainRoute objects to build route definitions.   */
 
 export const createRoutes = (store) => ({
-  path: '/react-chess',
+  path: '/',
   component: CoreLayout,
   indexRoute: Home,
   childRoutes: [
