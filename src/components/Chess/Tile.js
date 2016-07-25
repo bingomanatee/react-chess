@@ -62,6 +62,9 @@ export class Tile extends Component {
             if (this.props.moving.samePosition(this.props.position)) {
                 this.props.moveCancel();
             } else if (this.myTile.canBeMovedToByPiece(this.props.moving)) {
+                if (this.myPiece && this.myPiece.color === this.props.moving.color) {
+                    return;
+                }
                 this.props.moveComplete(this.props.position);
             }
         } else {
